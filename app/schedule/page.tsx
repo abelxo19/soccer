@@ -7,6 +7,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Card, CardContent } from '@/components/ui/card'
 import { Skeleton } from '@/components/ui/skeleton'
 import { getLeagueFixtures, TOP_LEAGUES, type Match } from '@/lib/api'
+import { Navbar } from '@/components/navbar'
 
 export default function SchedulePage() {
   const [activeLeague, setActiveLeague] = useState(TOP_LEAGUES[0].id)
@@ -25,6 +26,7 @@ export default function SchedulePage() {
 
   return (
     <div className="container mx-auto px-4 py-8">
+       <Navbar />
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
