@@ -1,88 +1,81 @@
-"use client"
+import Link from "next/link"
+import { ArrowRight } from "lucide-react"
+import HeroSection from "@/components/hero-section"
+import TipsPreview from "@/components/tips-preview"
+import TeamSelector from "@/components/team-select"
+import NewsPreview from "@/components/news-preview"
+import LiveScoresPreview from "@/components/live-score"
 
-import { motion } from 'framer-motion'
-import { Card } from '@/components/ui/card'
-import { Button } from '@/components/ui/button'
-import { Trophy, Calendar, Bell, Star } from 'lucide-react'
-import Link from 'next/link'
-
-export default function Home() {
+export default function HomePage() {
   return (
-    <div className="container mx-auto px-4 py-8">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="text-center mb-12"
-      >
-        <h1 className="text-4xl font-bold mb-4">Live Football Scores & Updates</h1>
-        <p className="text-muted-foreground">Stay updated with real-time scores, statistics, and match highlights</p>
-      </motion.div>
+    <div className="flex flex-col min-h-screen">
+      <main className="flex-1">
+        <HeroSection />
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.2 }}
-        >
-          <Card className="p-6">
-            <div className="flex items-center mb-4">
-              <Trophy className="h-6 w-6 mr-2" />
-              <h2 className="text-xl font-semibold">Top Leagues</h2>
+        <section className="container py-12 md:py-16">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
+            <div>
+              <h2 className="text-3xl font-bold tracking-tight">Soccer Tips</h2>
+              <p className="text-muted-foreground mt-2">Improve your game with position-specific tips</p>
             </div>
-            <p className="text-muted-foreground mb-4">Follow premier leagues worldwide</p>
-            <Link href="/leagues">
-              <Button className="w-full">Explore Leagues</Button>
+            <Link href="/tips" className="group flex items-center text-sm font-medium text-primary mt-4 md:mt-0">
+              View all tips
+              <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Link>
-          </Card>
-        </motion.div>
+          </div>
+          <TipsPreview />
+        </section>
 
-        <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.3 }}
-        >
-          <Card className="p-6">
-            <div className="flex items-center mb-4">
-              <Calendar className="h-6 w-6 mr-2" />
-              <h2 className="text-xl font-semibold">Match Schedule</h2>
+        <section className="bg-muted py-12 md:py-16">
+          <div className="container">
+            <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
+              <div>
+                <h2 className="text-3xl font-bold tracking-tight">Pick Your Team</h2>
+                <p className="text-muted-foreground mt-2">Find and follow your favorite soccer team</p>
+              </div>
+              <Link href="/teams" className="group flex items-center text-sm font-medium text-primary mt-4 md:mt-0">
+                View all teams
+                <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </Link>
             </div>
-            <p className="text-muted-foreground mb-4">Never miss an important match</p>
-            <Link href="/schedule">
-              <Button className="w-full">View Schedule</Button>
+            <TeamSelector league="premier-league" />
+          </div>
+        </section>
+
+        <section className="container py-12 md:py-16">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
+            <div>
+              <h2 className="text-3xl font-bold tracking-tight">Latest News</h2>
+              <p className="text-muted-foreground mt-2">Stay updated with news from top leagues</p>
+            </div>
+            <Link href="/news" className="group flex items-center text-sm font-medium text-primary mt-4 md:mt-0">
+              View all news
+              <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Link>
-          </Card>
-        </motion.div>
+          </div>
+          <NewsPreview />
+        </section>
 
-        <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.4 }}
-        >
-          <Card className="p-6">
-            <div className="flex items-center mb-4">
-              <Star className="h-6 w-6 mr-2" />
-              <h2 className="text-xl font-semibold">Favorites</h2>
+        <section className="bg-muted py-12 md:py-16">
+          <div className="container">
+            <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
+              <div>
+                <h2 className="text-3xl font-bold tracking-tight">Live Scores</h2>
+                <p className="text-muted-foreground mt-2">Track matches in real-time from around the world</p>
+              </div>
+              <Link
+                href="/live-scores"
+                className="group flex items-center text-sm font-medium text-primary mt-4 md:mt-0"
+              >
+                View all matches
+                <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </Link>
             </div>
-            <p className="text-muted-foreground mb-4">Track your favorite teams</p>
-            <Button className="w-full">Manage Favorites</Button>
-          </Card>
-        </motion.div>
-      </div>
-
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.5 }}
-        className="mt-12 text-center"
-      >
-        <h2 className="text-2xl font-semibold mb-4">Get Match Notifications</h2>
-        <p className="text-muted-foreground mb-6">Stay updated with live scores and important match events</p>
-        <Button>
-          <Bell className="mr-2 h-4 w-4" />
-          Enable Notifications
-        </Button>
-      </motion.div>
+            <LiveScoresPreview />
+          </div>
+        </section>
+      </main>
     </div>
   )
 }
+
